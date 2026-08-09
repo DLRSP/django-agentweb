@@ -1,0 +1,32 @@
+---
+name: CI/CD
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ci:
+    uses: DLRSP/workflows/.github/workflows/ci.yaml@main
+    permissions:
+      contents: write
+      actions: read
+      checks: write
+      security-events: write
+      pull-requests: write
+    with:
+      requirements-ref: main
+      install-test-deps: false
+      # Scaffold: per-env pip-compile locks not yet generated. Flip to `true`
+      # after the first upgrade-dependency run produces requirements/py*-*.txt
+      # and the pyproject share/django-agentweb/requirements data-files block
+      # is added.
+      assert-wheel-locks: false
+    secrets: inherit

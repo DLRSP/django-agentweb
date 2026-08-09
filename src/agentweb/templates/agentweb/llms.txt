@@ -1,0 +1,11 @@
+# {{ title }}
+{% if description %}> {{ description }}
+{% endif %}{% if body %}
+{{ body }}
+{% endif %}{% for section in sections %}
+## {{ section.heading }}
+{% for link in section.links %}- [{{ link.title }}]({{ link.url }}){% if link.notes %}: {{ link.notes }}{% endif %}
+{% endfor %}{% endfor %}{% if i18n_variants and languages %}
+## Languages
+{% for code in languages %}- [{{ code }}](/{{ code }}/llms.txt)
+{% endfor %}{% endif %}

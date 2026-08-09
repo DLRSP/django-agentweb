@@ -1,0 +1,110 @@
+#################
+## PyCharm
+#################
+.idea
+
+#################
+## Eclipse
+#################
+*.pydevproject
+.project
+.metadata
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+#################
+## Visual Studio
+#################
+*.suo
+*.user
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+*.obj
+*.pch
+*.pdb
+*.tmp
+#############
+## Windows
+#############
+Thumbs.db
+Desktop.ini
+
+#############
+## Python
+#############
+*.py[co]
+__pycache__/
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+coverage.xml
+htmlcov
+.pytest_cache
+.tox
+
+# Virtualenv
+venv/
+.venv/
+.venv-*/
+env/
+
+#Translations
+*.mo
+
+# Mac crap
+.DS_Store
+
+#############
+## Gh-Pages / docs
+#############
+site
+
+.**/rules/*.mdc
+.**/commands/*.md
+
+# Agent architecture (local only — never publish)
+AGENTS.md
+**/dlrsp-runs/
+**/plans/*.plan.md
+.**/rules/*.mdc
+.**/commands/*.md
+
+# Local helper scripts (never publish)
+exec_*.bat
+

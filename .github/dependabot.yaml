@@ -1,0 +1,30 @@
+# https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+---
+version: 2
+updates:
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Version-update PRs disabled fleet-wide: runtime/dev/test versions are
+    # managed centrally by the pip-compile lock-regeneration flow
+    # (upgrade-dependency.yaml). Dependabot SECURITY updates/alerts are
+    # unaffected by this limit (security advisory updates still apply).
+    open-pull-requests-limit: 0
+    labels:
+      - "📦 dependencies"
+    assignees:
+      - "dlrsp-dev"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "📦 dependencies"
+    assignees:
+      - "dlrsp-dev"
+    ignore:
+      # DLRSP reusable workflows are pinned to @main fleet-wide.
+      - dependency-name: "DLRSP/workflows*"

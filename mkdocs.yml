@@ -1,0 +1,49 @@
+---
+site_name: django-agentweb
+site_description: Make Django sites first-class citizens of the agentic web.
+site_url: https://dlrsp.github.io/django-agentweb/
+repo_url: https://github.com/DLRSP/django-agentweb
+repo_name: DLRSP/django-agentweb
+edit_uri: blob/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - git-revision-date
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Domains:
+      - Readability (llms.txt): domains/llms.md
+      - Structured data (JSON-LD): domains/jsonld.md
+      - Discovery: domains/discovery.md
+      - WebMCP: domains/webmcp.md
+      - Commerce & booking: domains/commerce.md
+      - SDF: domains/sdf.md
+  - Security: security.md

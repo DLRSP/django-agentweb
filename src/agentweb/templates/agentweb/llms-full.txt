@@ -1,0 +1,12 @@
+# {{ title }} — full
+{% if description %}> {{ description }}
+{% endif %}
+This is the verbose `llms-full.txt` companion (https://llmstxt.org/). Override
+the `agentweb/llms-full.txt` template to concatenate the full curated Markdown
+you want agents to ingest.
+{% if body %}
+{{ body }}
+{% endif %}{% for section in sections %}
+## {{ section.heading }}
+{% for link in section.links %}- [{{ link.title }}]({{ link.url }}){% if link.notes %}: {{ link.notes }}{% endif %}
+{% endfor %}{% endfor %}
