@@ -1,7 +1,9 @@
 # django-agentweb
 
 [![CI/CD](https://github.com/DLRSP/django-agentweb/actions/workflows/ci.yaml/badge.svg)](https://github.com/DLRSP/django-agentweb/actions/workflows/ci.yaml)
+[![PyPI](https://img.shields.io/pypi/v/django-agentweb.svg)](https://pypi.org/project/django-agentweb/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-GitHub_Pages-blue)](https://dlrsp.github.io/django-agentweb/)
 
 Make your Django site a **first-class citizen of the agentic web**.
 
@@ -39,21 +41,17 @@ maximise reuse and external visibility.
 
 ## Install
 
-Until the package is published on PyPI, install from VCS or an editable checkout:
-
 ```bash
-pip install "django-agentweb @ git+https://github.com/DLRSP/django-agentweb.git"
-# or: pip install -e ".[testing]"
-```
-
-Extras once installed:
-
-```bash
+pip install django-agentweb            # core (pure Django)
 pip install "django-agentweb[webmcp]"  # + server-side tool proxy
 pip install "django-agentweb[all]"     # everything
 ```
 
-Requires `django.contrib.sites`.
+Requires `django.contrib.sites`. Editable checkout for contributors:
+
+```bash
+pip install -e ".[testing]"
+```
 
 ## Quickstart
 
