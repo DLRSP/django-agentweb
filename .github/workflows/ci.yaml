@@ -24,9 +24,5 @@ jobs:
     with:
       requirements-ref: main
       install-test-deps: false
-      # Scaffold: per-env pip-compile locks not yet generated. Flip to `true`
-      # after the first upgrade-dependency run produces requirements/py*-*.txt
-      # and the pyproject share/django-agentweb/requirements data-files block
-      # is added.
-      assert-wheel-locks: false
+      assert-wheel-locks: true
     secrets: inherit
