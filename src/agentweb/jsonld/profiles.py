@@ -241,8 +241,9 @@ def build_from_profiles(
 ) -> Dict[str, Any]:
     """Build a full ``@graph`` document from profile names + context.
 
-    If ``names`` is omitted, uses ``AGENTWEB['JSONLD']['PROFILES']`` (or MVP
-    defaults when the setting list is empty and JSONLD is enabled).
+    If ``names`` is omitted, uses ``JSONLD.PROFILES`` from
+    ``APP_CONFIG["agentweb"]`` (or MVP defaults when the list is empty and
+    JSONLD is enabled).
     """
     cfg = conf.get_domain("JSONLD")
     selected = (

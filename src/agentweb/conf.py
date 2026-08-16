@@ -1,36 +1,45 @@
 """Settings access layer for django-agentweb.
 
-All behaviour is driven by a single ``AGENTWEB`` dict in Django settings. Every
-domain is **off by default**; a site opts in explicitly. Reading config through
-this module (rather than ``settings.AGENTWEB`` directly) guarantees defaults are
-always applied and keeps the activation contract in one place.
+Configuration follows the shared ``APP_CONFIG`` pattern used by other reusable
+Django packages. Every domain is **off by default**; a site opts in explicitly.
 
-Example::
+Precedence (highest first):
 
-    AGENTWEB = {
-        "LLMS": {
-            "ENABLED": True,
-            "TITLE": "Example Hotel",
-            "DESCRIPTION": "Independent hotel on the Italian coast.",
-            "SECTIONS": [
-                {
-                    "heading": "Book",
-                    "links": [
-                        {
-                            "title": "Rooms",
-                            "url": "https://example.com/rooms/",
-                            "notes": "Room types and amenities",
-                        },
-                    ],
-                },
-            ],
+1. Top-level ``settings.AGENTWEB`` (full dict override, if defined and non-empty)
+2. ``settings.APP_CONFIG["agentweb"]``
+3. Package :data:`DEFAULTS`
+
+Example (canonical)::
+
+    APP_CONFIG = {
+        "agentweb": {
+            "LLMS": {
+                "ENABLED": True,
+                "TITLE": "Example Hotel",
+                "DESCRIPTION": "Independent hotel on the Italian coast.",
+                "SECTIONS": [
+                    {
+                        "heading": "Book",
+                        "links": [
+                            {
+                                "title": "Rooms",
+                                "url": "https://example.com/rooms/",
+                                "notes": "Room types and amenities",
+                            },
+                        ],
+                    },
+                ],
+            },
+            "JSONLD": {"ENABLED": True, "PROFILES": ["sitewide", "lodging"]},
+            "DISCOVERY": {"ENABLED": True},
+            "WEBMCP": {"ENABLED": False},
+            "COMMERCE": {"ENABLED": False},
+            "SDF": {"ENABLED": False},
         },
-        "JSONLD": {"ENABLED": True},
-        "DISCOVERY": {"ENABLED": True},
-        "WEBMCP": {"ENABLED": False},
-        "COMMERCE": {"ENABLED": False},
-        "SDF": {"ENABLED": False},
     }
+
+Reading config through this module (rather than settings dicts directly)
+guarantees defaults are always applied.
 """
 
 from __future__ import annotations
@@ -39,9 +48,15 @@ from typing import Any, Dict
 
 from django.conf import settings
 
+#: Canonical key inside ``settings.APP_CONFIG``.
+APP_CONFIG_KEY = "agentweb"
+
+#: Optional top-level Django setting (full-dict override; migration / tests).
 SETTING_NAME = "AGENTWEB"
 
 #: Default configuration for every domain. Merged shallowly with user config.
+#: Editorial LLMS keys (TITLE, DESCRIPTION, BODY, SECTIONS) are **fallback**
+#: when no admin ``LlmsDocument`` exists for the current site + language.
 DEFAULTS: Dict[str, Dict[str, Any]] = {
     # Domain 1 — Readability (llms.txt / llms-full.txt).
     "LLMS": {
@@ -111,9 +126,19 @@ DEFAULTS: Dict[str, Dict[str, Any]] = {
 URL_DOMAINS = ("LLMS", "DISCOVERY", "WEBMCP", "COMMERCE", "SDF")
 
 
+def _user_config() -> Dict[str, Any]:
+    """Return the user-supplied domain dict (not yet merged with defaults)."""
+    top = getattr(settings, SETTING_NAME, None)
+    if isinstance(top, dict) and top:
+        return top
+    app_config = getattr(settings, "APP_CONFIG", None) or {}
+    block = app_config.get(APP_CONFIG_KEY)
+    return dict(block) if isinstance(block, dict) else {}
+
+
 def get_config() -> Dict[str, Dict[str, Any]]:
     """Return the full merged configuration (defaults + user overrides)."""
-    user_config = getattr(settings, SETTING_NAME, None) or {}
+    user_config = _user_config()
     merged: Dict[str, Dict[str, Any]] = {}
     for domain, defaults in DEFAULTS.items():
         overrides = user_config.get(domain, {}) or {}

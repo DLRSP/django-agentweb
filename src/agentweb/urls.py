@@ -1,8 +1,8 @@
 """Root URLconf for django-agentweb.
 
 Only the URL modules of **enabled** domains are wired in, so a site exposes
-exactly the agent-web surfaces it opts into via ``AGENTWEB``. Include this once
-in your project's ``urls.py``::
+exactly the agent-web surfaces it opts into via ``APP_CONFIG["agentweb"]``.
+Include this once in your project's ``urls.py``::
 
     path("", include("agentweb.urls"))
 """

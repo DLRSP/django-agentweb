@@ -7,51 +7,32 @@
 
 Make your Django site a **first-class citizen of the agentic web**.
 
-`django-agentweb` is a reusable Django app that helps AI agents (and the LLMs
-behind them) **discover, understand, and act on** your site — across five
-complementary domains. Every domain is **opt-in per site** and **off by
-default**, so you expose only what you choose.
+`django-agentweb` helps AI agents discover, understand, and act on your site
+across five complementary domains. Every domain is **opt-in** and **off by
+default**.
 
-> Status: **alpha**. Core domains (llms.txt, JSON-LD profiles, discovery /
-> ai-catalog + MCP server-card, browser WebMCP, CAP Lite) are implemented and
-> opt-in per site. Booking adapters and extras (Web Bot Auth, full SDF) follow.
-> See the [roadmap](#roadmap).
+> Status: **alpha**. Core domains are implemented and opt-in. Booking adapters
+> and some extras follow — see the [docs](https://dlrsp.github.io/django-agentweb/).
 
-## The five agent-web domains
+## Domains
 
-| # | Domain | What it provides | Standard(s) |
-|---|--------|------------------|-------------|
-| 1 | **Readability** | `llms.txt` / `llms-full.txt`, per-language variants | `llms.txt` |
-| 2 | **Structured data** | Schema.org JSON-LD (`Hotel`, `HotelRoom`, `Offer`, …) | Schema.org / JSON-LD |
-| 3 | **Discovery** | `/.well-known/` agent descriptors & capability manifest | Agent-Ready Web |
-| 4 | **WebMCP** | In-page tools agents can call (read-only by default) | Web Model Context Protocol |
-| 5 | **Commerce / SDF** | Agentic booking/commerce discovery + hooks; SDF (flag, off) | CAP / UCP / AP2, SDF |
-
-## Why
-
-Search and assistants increasingly mediate discovery through agents. For an
-independent hotel, that means letting an agent **check availability, simulate a
-booking price, and start a direct reservation** — and reducing dependence on
-OTAs (Booking.com / Expedia). The same building blocks benefit any content or
-commerce site.
-
-This package is intentionally **generic and externally adoptable**: it
-implements all five domains even where a given deployment won't use them, to
-maximise reuse and external visibility.
+| Domain | What it provides |
+|--------|------------------|
+| **Readability** | `llms.txt` / `llms-full.txt` |
+| **Structured data** | Schema.org JSON-LD profiles |
+| **Discovery** | `/.well-known/` agent descriptors |
+| **WebMCP** | In-page tools agents can call |
+| **Commerce / SDF** | Booking discovery hooks; SDF (flag, off) |
 
 ## Install
 
 ```bash
-pip install django-agentweb            # core (pure Django)
-pip install "django-agentweb[webmcp]"  # + server-side tool proxy
-pip install "django-agentweb[all]"     # everything
+pip install django-agentweb
+pip install "django-agentweb[webmcp]"   # optional: server-side tool proxy
+pip install "django-agentweb[all]"      # optional: all extras
 ```
 
-Requires `django.contrib.sites`. Editable checkout for contributors:
-
-```bash
-pip install -e ".[testing]"
-```
+Requires `django.contrib.sites`.
 
 ## Quickstart
 
@@ -63,13 +44,12 @@ INSTALLED_APPS = [
     "agentweb",
 ]
 
-AGENTWEB = {
-    "LLMS": {"ENABLED": True},
-    "JSONLD": {"ENABLED": True},
-    "DISCOVERY": {"ENABLED": True},
-    "WEBMCP": {"ENABLED": False},
-    "COMMERCE": {"ENABLED": False},
-    "SDF": {"ENABLED": False},
+APP_CONFIG = {
+    "agentweb": {
+        "LLMS": {"ENABLED": True},  # content: admin LLMS documents (or settings fallback)
+        "JSONLD": {"ENABLED": True},
+        "DISCOVERY": {"ENABLED": True},
+    },
 }
 ```
 
@@ -83,18 +63,11 @@ urlpatterns = [
 ]
 ```
 
-Only the domains you enable register any URLs or expose any data.
-
-## Security
-
-Agent-facing surfaces have a distinct threat model (prompt/output injection,
-data leakage, unsafe tool calls). Transactional tools always require
-human-in-the-loop. See [`SECURITY.md`](.github/SECURITY.md).
-
-## Roadmap
-
-Readability → structured data → discovery → WebMCP → commerce/booking → SDF,
-followed by per-site rollout. See the package docs for the current domain status.
+Enabling a domain alone is not always enough: some features need middleware,
+template tags, or a management command. See the
+[Getting started](https://dlrsp.github.io/django-agentweb/getting-started/)
+and [Configuration](https://dlrsp.github.io/django-agentweb/configuration/)
+guides.
 
 ## License
 

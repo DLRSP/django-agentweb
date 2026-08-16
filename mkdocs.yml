@@ -39,6 +39,7 @@ plugins:
 nav:
   - Home: index.md
   - Getting started: getting-started.md
+  - Configuration: configuration.md
   - Domains:
       - Readability (llms.txt): domains/llms.md
       - Structured data (JSON-LD): domains/jsonld.md

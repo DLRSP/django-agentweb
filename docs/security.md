@@ -1,19 +1,34 @@
 # Security model
 
-Agent-facing surfaces require an explicit threat model:
+Agent-facing surfaces have a different threat model from ordinary site pages.
 
-- **Prompt injection** — user/third-party content surfaced to agents is
-  untrusted; mark it with `untrustedContentHint`, never embed secrets.
-- **Output injection** — never reflect unsanitised input into structured
-  responses.
-- **Data leakage** — nothing is exposed without explicit per-site activation;
-  defaults are off.
-- **Tool safety** — `readOnlyHint` / `exposedTo` on every WebMCP tool;
-  transactional tools require human-in-the-loop. The optional HTTP remote
-  bridge (`WEBMCP.REMOTE_BRIDGE`, default off) is CSRF-exempt by design for
-  headless callers; do not mark session-sensitive reads as read-only, and keep
-  the bridge disabled unless you accept that trust boundary.
-- **Agent authentication** — optional Web Bot Auth (RFC 9421) via the
-  `webbotauth` extra.
+## Defaults
 
-See [`SECURITY.md`](https://github.com/DLRSP/django-agentweb/blob/main/.github/SECURITY.md).
+- Every domain is **off** until you set `ENABLED` in `APP_CONFIG["agentweb"]`.
+- WebMCP **remote bridge** defaults to off (`REMOTE_BRIDGE: False`).
+- Web Bot Auth defaults to off.
+
+## Risks and mitigations
+
+| Risk | Mitigation in this package |
+|------|----------------------------|
+| Prompt injection | Treat user/third-party content as untrusted; mark with hints; never embed secrets in tool output |
+| Output injection | JSON-LD / WebMCP payloads escape script-breakout characters; do not mark untrusted strings safe |
+| Data leakage | Opt-in domains; `EXCLUDE_PATTERNS` on llms sections; catalog only lists enabled domains |
+| Unsafe tools | `readOnlyHint` / confirmation flags; transactional tools require human-in-the-loop |
+| Headless bridge abuse | Keep `REMOTE_BRIDGE` off unless you accept CSRF-exempt POST invoke |
+| Spoofed bots | Optional Web Bot Auth (`[webbotauth]` + `DISCOVERY.WEB_BOT_AUTH`) |
+
+## Recommended production posture
+
+1. Enable only domains you need (`LLMS` + `JSONLD` + `DISCOVERY` is a solid start).
+2. Curate `LLMS.SECTIONS`; do not auto-publish admin or account URLs.
+3. Use browser WebMCP with read-only tools; leave the remote bridge disabled.
+4. Add Discovery middleware for honest `Link` advertisement without opening extra attack surface.
+5. Review [SECURITY.md](https://github.com/DLRSP/django-agentweb/blob/main/.github/SECURITY.md) for reporting.
+
+## Configuration pointers
+
+- `WEBMCP.REMOTE_BRIDGE` — see [WebMCP](domains/webmcp.md)
+- `DISCOVERY.WEB_BOT_AUTH` — see [Discovery](domains/discovery.md)
+- Full keys — [Configuration](configuration.md)

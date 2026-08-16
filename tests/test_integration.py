@@ -11,7 +11,6 @@ import tempfile
 from pathlib import Path
 from unittest.mock import patch
 
-from django.conf import settings
 from django.core.cache import cache
 from django.core.management import call_command
 from django.template import Context, Template
@@ -24,7 +23,9 @@ from agentweb.webmcp import tools
 
 
 def _agentweb(**domain_overrides):
-    base = {name: dict(cfg) for name, cfg in settings.AGENTWEB.items()}
+    from agentweb import conf
+
+    base = {name: dict(cfg) for name, cfg in conf.get_config().items()}
     for name, overrides in domain_overrides.items():
         base[name] = {**base.get(name, {}), **overrides}
     return base

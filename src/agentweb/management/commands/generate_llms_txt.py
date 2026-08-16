@@ -13,12 +13,13 @@ from __future__ import annotations
 import os
 
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
 from django.utils.translation import override
 
 from agentweb import conf
-from agentweb.llms.sections import build_sections
+from agentweb.llms.resolve import resolve_llms_content
 
 
 class Command(BaseCommand):
@@ -35,18 +36,31 @@ class Command(BaseCommand):
             default=None,
             help="Language code to render (default: settings.LANGUAGE_CODE).",
         )
+        parser.add_argument(
+            "--site-id",
+            type=int,
+            default=None,
+            help="Site primary key (default: settings.SITE_ID).",
+        )
 
     def handle(self, *args, **options) -> None:
         cfg = conf.get_domain("LLMS")
         output_dir = options["output"]
         language = options["lang"] or settings.LANGUAGE_CODE
+        site_id = options["site_id"] or getattr(settings, "SITE_ID", 1)
+        try:
+            site = Site.objects.get(pk=site_id)
+        except Site.DoesNotExist:
+            site = None
+
+        editorial = resolve_llms_content(site=site, language=language)
         os.makedirs(output_dir, exist_ok=True)
 
         context = {
-            "title": cfg.get("TITLE", "") or "Untitled site",
-            "description": cfg.get("DESCRIPTION", ""),
-            "body": cfg.get("BODY", ""),
-            "sections": build_sections(cfg),
+            "title": editorial.get("TITLE", "") or "Untitled site",
+            "description": editorial.get("DESCRIPTION", ""),
+            "body": editorial.get("BODY", ""),
+            "sections": editorial.get("SECTIONS") or [],
             "language": language,
             "languages": [code for code, _name in settings.LANGUAGES],
             "i18n_variants": bool(cfg.get("I18N_VARIANTS")),

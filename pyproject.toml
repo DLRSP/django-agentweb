@@ -68,7 +68,7 @@ Funding = "https://github.com/sponsors/DLRSP"
 # Pure-Django domains (llms, jsonld, discovery core, sdf) need no extra.
 webmcp = [
     # Server-side proxy to booking/commerce vendors (avoids exposing creds to
-    # the agent's browser). See AGENTWEB["WEBMCP"]["DATA_SOURCE"].
+    # the agent's browser). See APP_CONFIG["agentweb"]["WEBMCP"]["DATA_SOURCE"].
     "requests>=2.28",
 ]
 webbotauth = [
@@ -87,6 +87,7 @@ testing = [
     "codecov",
     "pytest",
     "pytest-django",
+    "playwright>=1.40",
 ]
 docs = [
     "mkdocs>=1.5",

@@ -29,7 +29,12 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ":memory:",
+    }
+}
 
 CACHES = {
     "default": {
@@ -44,6 +49,7 @@ TEMPLATES = [
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ]
@@ -71,43 +77,45 @@ USE_I18N = True
 
 STATIC_URL = "/static/"
 
-# Enable every agent-web domain for the test suite.
-AGENTWEB = {
-    "LLMS": {
-        "ENABLED": True,
-        "TITLE": "Test Site",
-        "DESCRIPTION": "Test site for django-agentweb.",
-        "CACHE_TIMEOUT": 0,
-        "SECTIONS": [
-            {
-                "heading": "Docs",
-                "links": [
-                    {
-                        "title": "About",
-                        "url": "https://example.com/about/",
-                        "notes": "About this site",
-                    }
-                ],
-            }
-        ],
-    },
-    "JSONLD": {
-        "ENABLED": True,
-        "PROFILES": [
-            "sitewide",
-            "breadcrumb",
-            "article",
-            "faq",
-            "lodging",
-            "lodging_room",
-        ],
-    },
-    "DISCOVERY": {"ENABLED": True, "WEB_BOT_AUTH": False},
-    "WEBMCP": {
-        "ENABLED": True,
-        "DATA_SOURCE": "proxy",
-        "REMOTE_BRIDGE": False,
-    },
-    "COMMERCE": {"ENABLED": True, "VENDOR": "example-booking-vendor"},
-    "SDF": {"ENABLED": True},
+# Enable every agent-web domain for the test suite (APP_CONFIG pattern).
+APP_CONFIG = {
+    "agentweb": {
+        "LLMS": {
+            "ENABLED": True,
+            "TITLE": "Test Site",
+            "DESCRIPTION": "Test site for django-agentweb.",
+            "CACHE_TIMEOUT": 0,
+            "SECTIONS": [
+                {
+                    "heading": "Docs",
+                    "links": [
+                        {
+                            "title": "About",
+                            "url": "https://example.com/about/",
+                            "notes": "About this site",
+                        }
+                    ],
+                }
+            ],
+        },
+        "JSONLD": {
+            "ENABLED": True,
+            "PROFILES": [
+                "sitewide",
+                "breadcrumb",
+                "article",
+                "faq",
+                "lodging",
+                "lodging_room",
+            ],
+        },
+        "DISCOVERY": {"ENABLED": True, "WEB_BOT_AUTH": False},
+        "WEBMCP": {
+            "ENABLED": True,
+            "DATA_SOURCE": "proxy",
+            "REMOTE_BRIDGE": False,
+        },
+        "COMMERCE": {"ENABLED": True, "VENDOR": "example-booking-vendor"},
+        "SDF": {"ENABLED": True},
+    }
 }

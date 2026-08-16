@@ -20,17 +20,21 @@ from agentweb.webmcp import tools
 
 
 class PackagingChecksTestCase(TestCase):
-    """Modelless package: Django system check and no pending migrations."""
+    """Package health: Django system check and migrations in sync."""
 
     def test_django_check_passes(self):
         call_command("check")
 
-    def test_no_agentweb_migration_modules(self):
+    def test_agentweb_migrations_are_in_sync(self):
         package_root = Path(__file__).resolve().parents[1] / "src" / "agentweb"
         migrations_dir = package_root / "migrations"
-        self.assertFalse(
+        self.assertTrue(
             migrations_dir.exists(),
-            "agentweb must stay modelless (no migrations package)",
+            "agentweb ships additive migrations for editorial LLMS models",
+        )
+        self.assertTrue(
+            any(migrations_dir.glob("0*.py")),
+            "expected at least one numbered migration module",
         )
         call_command(
             "makemigrations",

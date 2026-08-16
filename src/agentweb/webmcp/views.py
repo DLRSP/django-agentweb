@@ -46,8 +46,8 @@ class WebMCPManifestView(View):
 class WebMCPToolView(View):
     """Optional HTTP bridge for remote/headless tool invocation.
 
-    Disabled unless ``AGENTWEB['WEBMCP']['REMOTE_BRIDGE']`` is True. Read-only
-    tools execute; state-changing / human-confirmation tools return 409.
+    Disabled unless ``WEBMCP.REMOTE_BRIDGE`` is True. Read-only tools execute;
+    state-changing / human-confirmation tools return 409.
     """
 
     def post(

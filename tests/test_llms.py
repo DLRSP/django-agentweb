@@ -75,6 +75,6 @@ class LlmsTxtTestCase(TestCase):
 
     @staticmethod
     def _agentweb_base():
-        from django.conf import settings
+        from agentweb import conf
 
-        return dict(settings.AGENTWEB)
+        return {name: dict(cfg) for name, cfg in conf.get_config().items()}
