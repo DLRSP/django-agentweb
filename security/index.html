@@ -311,6 +311,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
     
@@ -325,10 +352,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -346,8 +373,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -548,6 +575,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -564,6 +609,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defaults
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-and-mitigations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risks and mitigations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-production-posture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended production posture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration pointers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -589,6 +697,58 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defaults
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-and-mitigations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risks and mitigations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-production-posture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended production posture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration pointers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -608,23 +768,62 @@
 
 
 <h1 id="security-model">Security model<a class="headerlink" href="#security-model" title="Permanent link">&para;</a></h1>
-<p>Agent-facing surfaces require an explicit threat model:</p>
+<p>Agent-facing surfaces have a different threat model from ordinary site pages.</p>
+<h2 id="defaults">Defaults<a class="headerlink" href="#defaults" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Prompt injection</strong> — user/third-party content surfaced to agents is
-  untrusted; mark it with <code>untrustedContentHint</code>, never embed secrets.</li>
-<li><strong>Output injection</strong> — never reflect unsanitised input into structured
-  responses.</li>
-<li><strong>Data leakage</strong> — nothing is exposed without explicit per-site activation;
-  defaults are off.</li>
-<li><strong>Tool safety</strong> — <code>readOnlyHint</code> / <code>exposedTo</code> on every WebMCP tool;
-  transactional tools require human-in-the-loop. The optional HTTP remote
-  bridge (<code>WEBMCP.REMOTE_BRIDGE</code>, default off) is CSRF-exempt by design for
-  headless callers; do not mark session-sensitive reads as read-only, and keep
-  the bridge disabled unless you accept that trust boundary.</li>
-<li><strong>Agent authentication</strong> — optional Web Bot Auth (RFC 9421) via the
-  <code>webbotauth</code> extra.</li>
+<li>Every domain is <strong>off</strong> until you set <code>ENABLED</code> in <code>APP_CONFIG["agentweb"]</code>.</li>
+<li>WebMCP <strong>remote bridge</strong> defaults to off (<code>REMOTE_BRIDGE: False</code>).</li>
+<li>Web Bot Auth defaults to off.</li>
 </ul>
-<p>See <a href="https://github.com/DLRSP/django-agentweb/blob/main/.github/SECURITY.md"><code>SECURITY.md</code></a>.</p>
+<h2 id="risks-and-mitigations">Risks and mitigations<a class="headerlink" href="#risks-and-mitigations" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation in this package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt injection</td>
+<td>Treat user/third-party content as untrusted; mark with hints; never embed secrets in tool output</td>
+</tr>
+<tr>
+<td>Output injection</td>
+<td>JSON-LD / WebMCP payloads escape script-breakout characters; do not mark untrusted strings safe</td>
+</tr>
+<tr>
+<td>Data leakage</td>
+<td>Opt-in domains; <code>EXCLUDE_PATTERNS</code> on llms sections; catalog only lists enabled domains</td>
+</tr>
+<tr>
+<td>Unsafe tools</td>
+<td><code>readOnlyHint</code> / confirmation flags; transactional tools require human-in-the-loop</td>
+</tr>
+<tr>
+<td>Headless bridge abuse</td>
+<td>Keep <code>REMOTE_BRIDGE</code> off unless you accept CSRF-exempt POST invoke</td>
+</tr>
+<tr>
+<td>Spoofed bots</td>
+<td>Optional Web Bot Auth (<code>[webbotauth]</code> + <code>DISCOVERY.WEB_BOT_AUTH</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommended-production-posture">Recommended production posture<a class="headerlink" href="#recommended-production-posture" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Enable only domains you need (<code>LLMS</code> + <code>JSONLD</code> + <code>DISCOVERY</code> is a solid start).</li>
+<li>Curate <code>LLMS.SECTIONS</code>; do not auto-publish admin or account URLs.</li>
+<li>Use browser WebMCP with read-only tools; leave the remote bridge disabled.</li>
+<li>Add Discovery middleware for honest <code>Link</code> advertisement without opening extra attack surface.</li>
+<li>Review <a href="https://github.com/DLRSP/django-agentweb/blob/main/.github/SECURITY.md">SECURITY.md</a> for reporting.</li>
+</ol>
+<h2 id="configuration-pointers">Configuration pointers<a class="headerlink" href="#configuration-pointers" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>WEBMCP.REMOTE_BRIDGE</code> — see <a href="../domains/webmcp/">WebMCP</a></li>
+<li><code>DISCOVERY.WEB_BOT_AUTH</code> — see <a href="../domains/discovery/">Discovery</a></li>
+<li>Full keys — <a href="../configuration/">Configuration</a></li>
+</ul>
 
 
 
@@ -645,7 +844,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2026-08-09
+    2026-08-16
   </span>
 
     

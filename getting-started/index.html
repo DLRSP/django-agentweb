@@ -16,7 +16,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../domains/llms/">
+        <link rel="next" href="../configuration/">
       
       
         
@@ -347,10 +347,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
+  <a href="#1-install-from-pypi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install
+        1. Install from PyPI
       
     </span>
   </a>
@@ -358,10 +358,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure" class="md-nav__link">
+  <a href="#2-register-the-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configure
+        2. Register the app
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configure-domains-app_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configure domains (APP_CONFIG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-include-urls-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Include URLs once
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-after-apps-urls-what-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. After apps + URLs — what else?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next
       
     </span>
   </a>
@@ -372,6 +427,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -396,10 +478,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -417,8 +499,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -657,10 +739,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
+  <a href="#1-install-from-pypi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install
+        1. Install from PyPI
       
     </span>
   </a>
@@ -668,10 +750,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure" class="md-nav__link">
+  <a href="#2-register-the-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configure
+        2. Register the app
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configure-domains-app_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configure domains (APP_CONFIG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-include-urls-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Include URLs once
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-after-apps-urls-what-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. After apps + URLs — what else?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next
       
     </span>
   </a>
@@ -699,30 +836,160 @@
 
 
 <h1 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
+<p>This page gets you from a blank Django project to working agent-web surfaces.
+After apps + URLs, <strong>each domain may need one or two extra steps</strong> (middleware,
+template tags, content, commands). The checklist below answers “is that all?”.</p>
+<h2 id="1-install-from-pypi">1. Install from PyPI<a class="headerlink" href="#1-install-from-pypi" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>django-agentweb
 </code></pre></div>
-<h2 id="configure">Configure<a class="headerlink" href="#configure" title="Permanent link">&para;</a></h2>
+<p>Optional extras (only if you need them):</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;django-agentweb[webmcp]&quot;</span><span class="w">      </span><span class="c1"># server-side vendor proxy helpers</span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;django-agentweb[webbotauth]&quot;</span><span class="w">  </span><span class="c1"># Web Bot Auth (RFC 9421)</span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;django-agentweb[commerce]&quot;</span><span class="w">   </span><span class="c1"># commerce HTTP helpers</span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;django-agentweb[all]&quot;</span><span class="w">        </span><span class="c1"># all of the above</span>
+</code></pre></div>
+<p>Requires Python 3.10+, Django 3.2+, and <code>django.contrib.sites</code> in
+<code>INSTALLED_APPS</code>.</p>
+<h2 id="2-register-the-app">2. Register the app<a class="headerlink" href="#2-register-the-app" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="c1"># ...</span>
     <span class="s2">&quot;django.contrib.sites&quot;</span><span class="p">,</span>
     <span class="s2">&quot;agentweb&quot;</span><span class="p">,</span>
 <span class="p">]</span>
-
-<span class="n">AGENTWEB</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;LLMS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
-    <span class="s2">&quot;JSONLD&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
-    <span class="s2">&quot;DISCOVERY&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+</code></pre></div>
+<p>Set <code>SITE_ID</code> as usual for <code>django.contrib.sites</code>.</p>
+<h2 id="3-configure-domains-app_config">3. Configure domains (<code>APP_CONFIG</code>)<a class="headerlink" href="#3-configure-domains-app_config" title="Permanent link">&para;</a></h2>
+<p>Canonical configuration lives under <strong><code>APP_CONFIG["agentweb"]</code></strong>. Domains you
+omit (or leave with <code>ENABLED: False</code>) stay inactive.</p>
+<div class="highlight"><pre><span></span><code><span class="n">APP_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;agentweb&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;LLMS&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;TITLE&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Hotel&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DESCRIPTION&quot;</span><span class="p">:</span> <span class="s2">&quot;Independent hotel on the Italian coast.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SECTIONS&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;heading&quot;</span><span class="p">:</span> <span class="s2">&quot;Book&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Rooms&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/rooms/&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Room types and amenities&quot;</span><span class="p">,</span>
+                        <span class="p">},</span>
+                    <span class="p">],</span>
+                <span class="p">},</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;JSONLD&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;PROFILES&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sitewide&quot;</span><span class="p">,</span> <span class="s2">&quot;lodging&quot;</span><span class="p">]},</span>
+        <span class="s2">&quot;DISCOVERY&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="c1"># Keep others off until you need them:</span>
+        <span class="c1"># &quot;WEBMCP&quot;: {&quot;ENABLED&quot;: False},</span>
+        <span class="c1"># &quot;COMMERCE&quot;: {&quot;ENABLED&quot;: False},</span>
+        <span class="c1"># &quot;SDF&quot;: {&quot;ENABLED&quot;: False},</span>
+    <span class="p">},</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># urls.py</span>
+<p>Full key reference: <a href="../configuration/">Configuration</a>.</p>
+<h2 id="4-include-urls-once">4. Include URLs once<a class="headerlink" href="#4-include-urls-once" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># project urls.py</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...</span>
     <span class="n">path</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;agentweb.urls&quot;</span><span class="p">)),</span>
 <span class="p">]</span>
 </code></pre></div>
-<p>Only enabled domains register URLs or expose data.</p>
+<p><code>agentweb.urls</code> only mounts routes for <strong>enabled</strong> domains (evaluated when the
+URLconf is imported). After changing <code>ENABLED</code> flags, restart the process so
+URL patterns reload.</p>
+<table>
+<thead>
+<tr>
+<th>Domain enabled</th>
+<th>Routes you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LLMS</code></td>
+<td><code>/llms.txt</code>, <code>/llms-full.txt</code></td>
+</tr>
+<tr>
+<td><code>DISCOVERY</code></td>
+<td><code>/.well-known/agent.json</code>, <code>ai-catalog.json</code>, <code>mcp/server-card.json</code></td>
+</tr>
+<tr>
+<td><code>WEBMCP</code></td>
+<td><code>/.well-known/webmcp.json</code>, optional <code>/webmcp/tools/&lt;name&gt;</code></td>
+</tr>
+<tr>
+<td><code>COMMERCE</code></td>
+<td><code>/.well-known/commerce.json</code></td>
+</tr>
+<tr>
+<td><code>SDF</code></td>
+<td><code>/.well-known/sdf.json</code></td>
+</tr>
+<tr>
+<td><code>JSONLD</code></td>
+<td><em>(no URL module — template tags / Python API only)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-after-apps-urls-what-else">5. After apps + URLs — what else?<a class="headerlink" href="#5-after-apps-urls-what-else" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Extra steps required?</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLMS</strong></td>
+<td>Content yes; command optional</td>
+<td>Prefer admin <strong>LLMS documents</strong> (Site + language). Settings <code>TITLE</code>/<code>SECTIONS</code> work as fallback. Optional: <code>import_llms_from_settings</code>, <code>generate_llms_txt</code>.</td>
+</tr>
+<tr>
+<td><strong>JSONLD</strong></td>
+<td>Yes (templates or views)</td>
+<td>Build a graph in Python or enable profiles, then <code>{% jsonld_script %}</code> in the page.</td>
+</tr>
+<tr>
+<td><strong>DISCOVERY</strong></td>
+<td>Middleware recommended</td>
+<td>Add <code>agentweb.discovery.middleware.AgentwebDiscoveryMiddleware</code> so responses advertise the catalog via <code>Link</code>.</td>
+</tr>
+<tr>
+<td><strong>WEBMCP</strong></td>
+<td>Yes (templates + tools)</td>
+<td><code>{% webmcp_register %}</code> in base template; register tools in Python; optional remote bridge.</td>
+</tr>
+<tr>
+<td><strong>COMMERCE</strong></td>
+<td>Minimal</td>
+<td>Descriptor URL is enough for discovery; wire a vendor when you need booking.</td>
+</tr>
+<tr>
+<td><strong>SDF</strong></td>
+<td>Minimal</td>
+<td>Descriptor URL only while the format is experimental.</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed per-domain guides are under <strong>Domains</strong> in the nav.</p>
+<h2 id="minimal-verification">Minimal verification<a class="headerlink" href="#minimal-verification" title="Permanent link">&para;</a></h2>
+<p>With <code>LLMS</code> and <code>DISCOVERY</code> enabled:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+<span class="c1"># open http://127.0.0.1:8000/llms.txt</span>
+<span class="c1"># open http://127.0.0.1:8000/.well-known/ai-catalog.json</span>
+</code></pre></div>
+<h2 id="next">Next<a class="headerlink" href="#next" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../configuration/">Configuration reference</a> — every key and the enablement matrix</li>
+<li><a href="../security/">Security</a> — before enabling WebMCP remote bridge or bot auth</li>
+</ul>
 
 
 
@@ -743,7 +1010,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2026-08-09
+    2026-08-16
   </span>
 
     

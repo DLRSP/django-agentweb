@@ -311,6 +311,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -329,10 +356,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -350,8 +377,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -433,6 +460,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discovery
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -449,6 +494,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-get-after-enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you get after enabling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#middleware-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Middleware (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-bot-auth-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Bot Auth (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-card-and-remote-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP server card and remote bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -593,6 +712,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-get-after-enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you get after enabling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#middleware-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Middleware (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-bot-auth-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Bot Auth (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-card-and-remote-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP server card and remote bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -613,17 +795,80 @@
 
 <h1 id="discovery-well-known">Discovery — /.well-known<a class="headerlink" href="#discovery-well-known" title="Permanent link">&para;</a></h1>
 <p>Publishes machine-readable descriptors so agents can discover which agent-web
-features the site exposes:</p>
+features the site exposes.</p>
+<h2 id="what-you-get-after-enabling">What you get after enabling<a class="headerlink" href="#what-you-get-after-enabling" title="Permanent link">&para;</a></h2>
+<p>With <code>DISCOVERY.ENABLED = True</code> and <code>agentweb.urls</code> included:</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Name</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/.well-known/agent.json</code></td>
+<td><code>agentweb-agent-descriptor</code></td>
+<td>Compact capability map (legacy-friendly)</td>
+</tr>
+<tr>
+<td><code>/.well-known/ai-catalog.json</code></td>
+<td><code>agentweb-ai-catalog</code></td>
+<td><a href="https://agenticresourcediscovery.org/">Agentic Resource Discovery</a> catalog (<code>specVersion</code> 1.0), CORS <code>*</code></td>
+</tr>
+<tr>
+<td><code>/.well-known/mcp/server-card.json</code></td>
+<td><code>agentweb-mcp-server-card</code></td>
+<td>MCP Server Card for the site WebMCP surface</td>
+</tr>
+</tbody>
+</table>
+<p>Catalog entries only reflect <strong>other domains that are also enabled</strong>. Enabling
+discovery alone with every other domain off yields a minimal host catalog.</p>
+<p>Optional host fields:</p>
+<div class="highlight"><pre><span></span><code><span class="n">APP_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;agentweb&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;DISCOVERY&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;HOST_DISPLAY_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Hotel&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;HOST_IDENTIFIER&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;WEB_BOT_AUTH&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="middleware-recommended">Middleware (recommended)<a class="headerlink" href="#middleware-recommended" title="Permanent link">&para;</a></h2>
+<p>URLs work without middleware. Middleware advertises discovery on ordinary HTML
+responses:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...</span>
+    <span class="s2">&quot;agentweb.discovery.middleware.AgentwebDiscoveryMiddleware&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>When discovery is enabled, the middleware may set:</p>
 <ul>
-<li><code>/.well-known/agent.json</code> — compact capability map (soft-deprecated)</li>
-<li><code>/.well-known/ai-catalog.json</code> — <a href="https://agenticresourcediscovery.org/">Agentic Resource Discovery</a>
-  catalog (<code>specVersion</code> 1.0) with CORS <code>Access-Control-Allow-Origin: *</code></li>
-<li><code>/.well-known/mcp/server-card.json</code> — MCP Server Card (v1 schema) for the
-  site's WebMCP surface; Streamable HTTP remotes only when the optional remote
-  bridge is enabled</li>
+<li><code>Link</code> — <code>rel="ai-catalog"</code> and <code>rel="agent-descriptor"</code></li>
+<li><code>X-Agentweb-Discovery: 1</code></li>
+<li><code>Permissions-Policy: tools=(self)</code> — only if <code>WEBMCP</code> is also enabled and
+  <code>tools=</code> is not already present</li>
 </ul>
-<p>Only <strong>enabled</strong> domains appear as catalog entries. Optional Web Bot Auth
-(RFC 9421) remains behind the <code>webbotauth</code> extra and <code>DISCOVERY.WEB_BOT_AUTH</code>.</p>
+<h2 id="web-bot-auth-optional">Web Bot Auth (optional)<a class="headerlink" href="#web-bot-auth-optional" title="Permanent link">&para;</a></h2>
+<p>Set <code>WEB_BOT_AUTH: True</code> and install the extra:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;django-agentweb[webbotauth]&quot;</span>
+</code></pre></div>
+<p>This enforces HTTP Message Signatures (RFC 9421) on selected agent traffic.
+Leave off unless you have a concrete agent-auth requirement.</p>
+<h2 id="mcp-server-card-and-remote-bridge">MCP server card and remote bridge<a class="headerlink" href="#mcp-server-card-and-remote-bridge" title="Permanent link">&para;</a></h2>
+<p>The server card describes browser WebMCP. Streamable HTTP remotes appear only
+when <code>WEBMCP.REMOTE_BRIDGE</code> is enabled — keep that off for browser-only sites.</p>
+<h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>GET /.well-known/ai-catalog.json</code> → <code>200</code> JSON.</li>
+<li>Enable <code>LLMS</code> and reload: catalog should mention readability resources.</li>
+<li>With middleware: inspect response headers on a normal page for <code>Link</code>.</li>
+</ol>
+<p>See <a href="../../configuration/#discovery">Configuration</a>.</p>
 
 
 
@@ -644,7 +889,7 @@ features the site exposes:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2026-08-09
+    2026-08-16
   </span>
 
     

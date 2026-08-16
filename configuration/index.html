@@ -1,0 +1,1566 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Make Django sites first-class citizens of the agentic web.">
+      
+      
+      
+        <link rel="canonical" href="https://dlrsp.github.io/django-agentweb/configuration/">
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+        <link rel="next" href="../domains/llms/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuration - django-agentweb</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="django-agentweb" class="md-header__button md-logo" aria-label="django-agentweb" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            django-agentweb
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DLRSP/django-agentweb" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DLRSP/django-agentweb
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="django-agentweb" class="md-nav__button md-logo" aria-label="django-agentweb" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    django-agentweb
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DLRSP/django-agentweb" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DLRSP/django-agentweb
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#canonical-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical shape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enablement-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enablement checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enablement checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#middleware-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Middleware (Discovery)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain keys
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Domain keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonld" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSONLD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DISCOVERY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webmcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WEBMCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commerce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMMERCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-top-level-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional top-level override
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-reload-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restart / reload notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-hotel-oriented-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example (hotel-oriented site)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Domains
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domains/llms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readability (llms.txt)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domains/jsonld/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structured data (JSON-LD)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domains/discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domains/webmcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebMCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domains/commerce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commerce & booking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../domains/sdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#canonical-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical shape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enablement-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enablement checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enablement checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#middleware-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Middleware (Discovery)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain keys
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Domain keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonld" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSONLD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DISCOVERY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webmcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WEBMCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commerce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMMERCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-top-level-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional top-level override
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-reload-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restart / reload notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-hotel-oriented-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example (hotel-oriented site)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p>All package options are read through <code>agentweb.conf</code>. Prefer configuring via
+<strong><code>APP_CONFIG["agentweb"]</code></strong> so this package matches other reusable Django apps
+that share a single nested settings dict.</p>
+<h2 id="precedence">Precedence<a class="headerlink" href="#precedence" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Top-level <code>settings.AGENTWEB</code> — if set to a <strong>non-empty dict</strong>, it replaces
+   the whole <code>APP_CONFIG["agentweb"]</code> block (useful for tests / one-shot
+   overrides).</li>
+<li><code>settings.APP_CONFIG["agentweb"]</code> — <strong>canonical</strong> site configuration.</li>
+<li>Package defaults in <code>agentweb.conf.DEFAULTS</code> (every domain <code>ENABLED: False</code>).</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">agentweb</span> <span class="kn">import</span> <span class="n">conf</span>
+
+<span class="n">conf</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">(</span><span class="s2">&quot;LLMS&quot;</span><span class="p">)</span>       <span class="c1"># bool</span>
+<span class="n">conf</span><span class="o">.</span><span class="n">get_domain</span><span class="p">(</span><span class="s2">&quot;LLMS&quot;</span><span class="p">)</span>       <span class="c1"># merged dict for one domain</span>
+<span class="n">conf</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>             <span class="c1"># all domains, merged</span>
+</code></pre></div>
+<p>Do not read raw <code>settings.APP_CONFIG</code> in your own code if you need defaults
+applied — use <code>agentweb.conf</code>.</p>
+<h2 id="canonical-shape">Canonical shape<a class="headerlink" href="#canonical-shape" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">APP_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;agentweb&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;LLMS&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">},</span>
+        <span class="s2">&quot;JSONLD&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">},</span>
+        <span class="s2">&quot;DISCOVERY&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">},</span>
+        <span class="s2">&quot;WEBMCP&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">},</span>
+        <span class="s2">&quot;COMMERCE&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">},</span>
+        <span class="s2">&quot;SDF&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Unknown domain keys are ignored. Within a domain, user keys <strong>shallow-merge</strong>
+onto defaults (nested lists/dicts such as <code>SECTIONS</code> are replaced wholesale).</p>
+<h2 id="enablement-checklist">Enablement checklist<a class="headerlink" href="#enablement-checklist" title="Permanent link">&para;</a></h2>
+<p>Turning <code>ENABLED</code> on is necessary but not always sufficient.</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th><code>ENABLED</code></th>
+<th>URLs auto?</th>
+<th>Also configure / wire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLMS</td>
+<td>yes</td>
+<td>yes</td>
+<td>Prefer <strong>admin</strong> LLMS documents (Site+language); settings <code>TITLE</code>/<code>SECTIONS</code> as fallback; optional <code>import_llms_from_settings</code> / <code>generate_llms_txt</code></td>
+</tr>
+<tr>
+<td>JSONLD</td>
+<td>yes</td>
+<td>no</td>
+<td><code>PROFILES</code> and/or Python builders; <code>{% load agentweb_jsonld %}</code></td>
+</tr>
+<tr>
+<td>DISCOVERY</td>
+<td>yes</td>
+<td>yes</td>
+<td>optional middleware; optional <code>HOST_*</code> / <code>WEB_BOT_AUTH</code></td>
+</tr>
+<tr>
+<td>WEBMCP</td>
+<td>yes</td>
+<td>yes (manifest)</td>
+<td>template tag; register tools; extras for proxy; optional <code>REMOTE_BRIDGE</code></td>
+</tr>
+<tr>
+<td>COMMERCE</td>
+<td>yes</td>
+<td>yes</td>
+<td>optional <code>VENDOR</code> string</td>
+</tr>
+<tr>
+<td>SDF</td>
+<td>yes</td>
+<td>yes</td>
+<td>keep off unless you intentionally dogfood SDF</td>
+</tr>
+</tbody>
+</table>
+<h3 id="middleware-discovery">Middleware (Discovery)<a class="headerlink" href="#middleware-discovery" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...</span>
+    <span class="s2">&quot;agentweb.discovery.middleware.AgentwebDiscoveryMiddleware&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>When <code>DISCOVERY</code> is enabled, responses gain <code>Link</code> headers pointing at the
+catalog / agent descriptor, <code>X-Agentweb-Discovery: 1</code>, and (if <code>WEBMCP</code> is also
+enabled) <code>Permissions-Policy: tools=(self)</code> when not already set.</p>
+<h3 id="template-tags">Template tags<a class="headerlink" href="#template-tags" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Tags</th>
+<th>Needed when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agentweb_jsonld</code></td>
+<td><code>jsonld_script</code></td>
+<td>Embedding JSON-LD on HTML pages</td>
+</tr>
+<tr>
+<td><code>agentweb_webmcp</code></td>
+<td><code>webmcp_register</code></td>
+<td>Browser WebMCP registration</td>
+</tr>
+<tr>
+<td><code>agentweb_webmcp_decl</code></td>
+<td><code>webmcp_form_attrs</code>, <code>permissions_policy_tools</code></td>
+<td>Declarative form annotations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="management-commands">Management commands<a class="headerlink" href="#management-commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>generate_llms_txt<span class="w"> </span>--output<span class="w"> </span>./static/
+python<span class="w"> </span>manage.py<span class="w"> </span>generate_llms_txt<span class="w"> </span>--output<span class="w"> </span>./static/<span class="w"> </span>--lang<span class="w"> </span>it
+python<span class="w"> </span>manage.py<span class="w"> </span>import_llms_from_settings<span class="w"> </span>--site-id<span class="w"> </span><span class="m">1</span><span class="w"> </span>--lang<span class="w"> </span>en
+</code></pre></div>
+<ul>
+<li><code>generate_llms_txt</code> — write static files (same resolve as the HTTP views).</li>
+<li><code>import_llms_from_settings</code> — seed admin models from settings editorial keys
+  (idempotent; never runs on migrate).</li>
+</ul>
+<h2 id="domain-keys">Domain keys<a class="headerlink" href="#domain-keys" title="Permanent link">&para;</a></h2>
+<h3 id="llms"><code>LLMS</code><a class="headerlink" href="#llms" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLED</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Mount <code>/llms.txt</code> and <code>/llms-full.txt</code></td>
+</tr>
+<tr>
+<td><code>TITLE</code></td>
+<td>str</td>
+<td><code>""</code></td>
+<td>Fallback H1 when no admin document</td>
+</tr>
+<tr>
+<td><code>DESCRIPTION</code></td>
+<td>str</td>
+<td><code>""</code></td>
+<td>Fallback blockquote summary</td>
+</tr>
+<tr>
+<td><code>BODY</code></td>
+<td>str</td>
+<td><code>""</code></td>
+<td>Fallback Markdown body</td>
+</tr>
+<tr>
+<td><code>SECTIONS</code></td>
+<td>list</td>
+<td><code>[]</code></td>
+<td>Fallback H2 blocks (see shape below)</td>
+</tr>
+<tr>
+<td><code>CACHE_TIMEOUT</code></td>
+<td>int</td>
+<td><code>3600</code></td>
+<td>Seconds; <code>0</code> disables caching</td>
+</tr>
+<tr>
+<td><code>I18N_VARIANTS</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>Advertise language variants in templates</td>
+</tr>
+<tr>
+<td><code>EXCLUDE_PATTERNS</code></td>
+<td>list</td>
+<td>admin/accounts/…</td>
+<td>Always applied after resolve (settings only)</td>
+</tr>
+<tr>
+<td><code>AUTO_SECTIONS</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>If no sections, emit minimal Docs placeholder</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Editorial preferred path:</strong> Django admin <strong>LLMS documents</strong> (per Site + language).
+Settings keys above remain a supported fallback forever. See
+<a href="../domains/llms/">Readability</a>.</p>
+<p>Section shape:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;heading&quot;</span><span class="p">:</span> <span class="s2">&quot;Book&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Rooms&quot;</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/rooms/&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;optional&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="jsonld"><code>JSONLD</code><a class="headerlink" href="#jsonld" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLED</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Allow default profile resolution when names omitted</td>
+</tr>
+<tr>
+<td><code>PROFILES</code></td>
+<td>list[str]</td>
+<td><code>[]</code></td>
+<td>Default profile names for <code>build_from_profiles()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Profiles do not register URLs. See <a href="../domains/jsonld/">Structured data</a>.</p>
+<h3 id="discovery"><code>DISCOVERY</code><a class="headerlink" href="#discovery" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLED</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Mount <code>/.well-known/</code> discovery JSON</td>
+</tr>
+<tr>
+<td><code>WEB_BOT_AUTH</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Enforce Web Bot Auth (needs <code>[webbotauth]</code> extra)</td>
+</tr>
+<tr>
+<td><code>HOST_DISPLAY_NAME</code></td>
+<td>str</td>
+<td><code>""</code></td>
+<td>Optional ARD host display name</td>
+</tr>
+<tr>
+<td><code>HOST_IDENTIFIER</code></td>
+<td>str</td>
+<td><code>""</code></td>
+<td>Optional ARD host identifier</td>
+</tr>
+</tbody>
+</table>
+<p>Catalog entries only list <strong>other domains that are also enabled</strong>.</p>
+<h3 id="webmcp"><code>WEBMCP</code><a class="headerlink" href="#webmcp" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLED</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Manifest URL + allow template registration</td>
+</tr>
+<tr>
+<td><code>DATA_SOURCE</code></td>
+<td>str</td>
+<td><code>"proxy"</code></td>
+<td>Reserved for future vendor-call posture (<code>proxy</code> vs <code>client</code>). Not read by runtime code yet — keep <code>"proxy"</code>; do not rely on it for security.</td>
+</tr>
+<tr>
+<td><code>REMOTE_BRIDGE</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Allow HTTP <code>POST /webmcp/tools/&lt;name&gt;</code> for headless agents</td>
+</tr>
+</tbody>
+</table>
+<p>Browser WebMCP works with the template tag alone; the remote bridge is a
+separate trust boundary — see <a href="../security/">Security</a>.</p>
+<h3 id="commerce"><code>COMMERCE</code><a class="headerlink" href="#commerce" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLED</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Mount <code>/.well-known/commerce.json</code></td>
+</tr>
+<tr>
+<td><code>VENDOR</code></td>
+<td>str | None</td>
+<td><code>None</code></td>
+<td>Optional booking-engine identifier for discovery</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sdf"><code>SDF</code><a class="headerlink" href="#sdf" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLED</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>Mount <code>/.well-known/sdf.json</code> (experimental)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-top-level-override">Optional top-level override<a class="headerlink" href="#optional-top-level-override" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Replaces APP_CONFIG[&quot;agentweb&quot;] entirely when non-empty</span>
+<span class="n">AGENTWEB</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;LLMS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;TITLE&quot;</span><span class="p">:</span> <span class="s2">&quot;Override&quot;</span><span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Prefer <code>APP_CONFIG</code> in project settings. Keep <code>AGENTWEB</code> for tests
+(<code>override_settings</code>) or temporary migrations.</p>
+<h2 id="restart-reload-notes">Restart / reload notes<a class="headerlink" href="#restart-reload-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Changing <code>ENABLED</code> for URL domains requires a <strong>process restart</strong> so
+  <code>agentweb.urls</code> is re-imported.</li>
+<li>Changing content keys (<code>TITLE</code>, <code>SECTIONS</code>, profiles, …) is picked up on the
+  next request (and after cache expiry for LLMS when <code>CACHE_TIMEOUT</code> &gt; 0).</li>
+</ul>
+<h2 id="worked-example-hotel-oriented-site">Worked example (hotel-oriented site)<a class="headerlink" href="#worked-example-hotel-oriented-site" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">APP_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;agentweb&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;LLMS&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;TITLE&quot;</span><span class="p">:</span> <span class="s2">&quot;Sea View Hotel&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DESCRIPTION&quot;</span><span class="p">:</span> <span class="s2">&quot;Boutique hotel with direct booking.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CACHE_TIMEOUT&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+            <span class="s2">&quot;SECTIONS&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;heading&quot;</span><span class="p">:</span> <span class="s2">&quot;Stay&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Rooms&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/rooms/&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Types, amenities, photos&quot;</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Book&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/book/&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Direct reservation&quot;</span><span class="p">,</span>
+                        <span class="p">},</span>
+                    <span class="p">],</span>
+                <span class="p">},</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;JSONLD&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;PROFILES&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sitewide&quot;</span><span class="p">,</span> <span class="s2">&quot;lodging&quot;</span><span class="p">,</span> <span class="s2">&quot;lodging_room&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;DISCOVERY&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;HOST_DISPLAY_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;Sea View Hotel&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;WEBMCP&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;DATA_SOURCE&quot;</span><span class="p">:</span> <span class="s2">&quot;proxy&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;REMOTE_BRIDGE&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;COMMERCE&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;VENDOR&quot;</span><span class="p">:</span> <span class="s2">&quot;example-booking-engine&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;SDF&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ENABLED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># ...</span>
+    <span class="s2">&quot;agentweb.discovery.middleware.AgentwebDiscoveryMiddleware&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Then in the base HTML template:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">load</span> <span class="nv">agentweb_jsonld</span> <span class="nv">agentweb_webmcp</span> <span class="cp">%}</span>
+<span class="c">{# ... build `jsonld_doc` in the view context ... #}</span>
+<span class="cp">{%</span> <span class="k">jsonld_script</span> <span class="nv">jsonld_doc</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">webmcp_register</span> <span class="cp">%}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2026-08-16
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
